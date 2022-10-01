@@ -6,56 +6,88 @@
     <meta charset="utf-8">
     <meta name="description" content="A simple website to help review videos">
     <meta name="author" content="Thirushanth Thirunavukarasu">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Video Review</title>
-    <link rel="stylesheet" href="main.css?v=0.1">
+    <link rel="stylesheet" href="deps/bulma/v0.9.4/css/bulma.min.css" >
     <script src="main.js?v=0.1"></script>
   </head>
 
   <body>
-    <h1>Video Review</h1>
+    <section class="section">
+      <div class="container">
 
-    <main>
-      <section id="controls">
+        <!-- Header -->
+        <h1 class="title has-text-centered has-text-primary">
+          Video Review
+        </h1>
+
         <div>
-          <input id="urlInput"
-                 placeholder="Video URL"
-                 type="text" />
-          <button onclick="loadVideo(event)"
-                  title="Load video entered in the textbox">
-            Load
-          </button>
+          <!-- Video URL -->
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input id="urlInput"
+                     class="input"
+                     placeholder="Video URL"
+                     type="text" />
+            </div>
+            <div class="control">
+              <a class="button is-info"
+                 onclick="loadVideo(event)"
+                 title="Load video entered in the textbox">
+                Load
+              </a>
+            </div>
+          </div>
+
+          <div class="columns">
+            <!-- Jump -->
+            <div class="column field has-addons">
+              <div class="control">
+                <a class="button is-static">
+                  Jump By
+                </a>
+              </div>
+              <div class="control is-expanded">
+                <input id="jumpSecondsInput"
+                       class="input"
+                       min="0"
+                       step="1.0"
+                       title="Number of seconds to fast forward/rewind by"
+                       type="number"
+                       value="3.0" />
+              </div>
+            </div>
+
+            <!-- Speed -->
+            <div class="column field has-addons">
+              <div class="control">
+                <a class="button is-static">
+                  Speed
+                </a>
+              </div>
+              <div class="control is-expanded">
+                <input id="speedInput"
+                       class="input"
+                       onchange="onSpeedChange(event)"
+                       step="0.2"
+                       title="Playback speed multiplier (1.0 is normal speed)"
+                       type="number"
+                       value="1.0" />
+              </div>
+            </div>
+          </div>
         </div>
-        <br/>
+
         <div>
-          <label title="Number of seconds to fast forward/rewind by">
-            Jump
-            <input id="jumpSecondsInput"
-                   min="0"
-                   step="1.0"
-                   type="number"
-                   value="3.0" />
-          </label>
-          <label title="Playback speed multiplier (1.0 is normal speed)">
-            Speed
-            <input id="speedInput"
-                   onchange="onSpeedChange(event)"
-                   step="0.2"
-                   type="number"
-                   value="1.0" />
-          </label>
+          <video controls
+                 onkeydown="onVideoKeyDown(event)"
+                 src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4">
+                 style="width:100%"
+          </video>
         </div>
-      </section>
-
-      <br />
-
-      <section>
-        <video controls
-               onkeydown="onVideoKeyDown(event)"
-               src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4">
-        </video>
-      </section>
-    </main>
+      </div>
+    </section>
   </body>
 
 </html>
