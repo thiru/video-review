@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="A simple website to help review videos">
+    <meta name="author" content="Thirushanth Thirunavukarasu">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Video Review</title>
+    <link rel="stylesheet" href="main.css?v=0.1">
+    <script src="main.js?v=0.1"></script>
+  </head>
+
+  <body>
+    <h1>Video Review</h1>
+
+    <main>
+      <section id="controls">
+        <div>
+          <input id="urlInput"
+                 placeholder="Video URL"
+                 type="text" />
+          <button onclick="loadVideo(event)"
+                  title="Load video entered in the textbox">
+            Load
+          </button>
+        </div>
+        <br/>
+        <div>
+          <label title="Number of seconds to fast forward/rewind by">
+            Jump
+            <input id="jumpSecondsInput"
+                   min="0"
+                   step="1.0"
+                   type="number"
+                   value="3.0" />
+          </label>
+          <label title="Playback speed multiplier (1.0 is normal speed)">
+            Speed
+            <input id="speedInput"
+                   onchange="onSpeedChange(event)"
+                   step="0.2"
+                   type="number"
+                   value="1.0" />
+          </label>
+        </div>
+      </section>
+
+      <br />
+
+      <section>
+        <video controls
+               onkeydown="onVideoKeyDown(event)"
+               src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4">
+        </video>
+      </section>
+    </main>
+  </body>
+
+</html>
